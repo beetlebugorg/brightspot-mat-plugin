@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.mat.api.nameResolver">
+      <resolver
+            impl="org.beetlebug.UUIDNameResolver">
+      </resolver>
+   </extension>
+   <extension
+         point="org.eclipse.mat.api.threadResolver">
+      <resolver
+            impl="org.beetlebug.BrightspotThreadDetailsResolver">
+      </resolver>
+   </extension>
+
+</plugin>
