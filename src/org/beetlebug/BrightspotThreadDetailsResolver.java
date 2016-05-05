@@ -68,14 +68,19 @@ public class BrightspotThreadDetailsResolver implements IThreadDetailsResolver {
                     builder.append("<div class='record'>");
 
                     Date startTime = new Date((Long) local.resolveValue("startTime"));
-                    IObject query = (IObject) local.resolveValue("queryMB");
+
+					builder.append("        URL: <b>");
                     IObject serverName = (IObject) local.resolveValue("serverNameMB");
+                    if (serverName.resolveValue("strValue") != null) {
+						builder.append(PrettyPrinter.objectAsString((IObject) serverName.resolveValue("strValue"), 1024));
+                    }
+
                     IObject uri = (IObject) local.resolveValue("uriMB");
+                    if (uri.resolveValue("strValue") != null) {
+                    	builder.append(PrettyPrinter.objectAsString((IObject) uri.resolveValue("strValue"), 1024));
+                    }
 
-                    builder.append("        URL: <b>"
-                            + PrettyPrinter.objectAsString((IObject) serverName.resolveValue("strValue"), 1024));
-                    builder.append(PrettyPrinter.objectAsString((IObject) uri.resolveValue("strValue"), 1024));
-
+                    IObject query = (IObject) local.resolveValue("queryMB");
                     if (query.resolveValue("strValue") != null) {
                         builder.append("?");
                         builder.append(PrettyPrinter.objectAsString((IObject) query.resolveValue("strValue"), 1024));
