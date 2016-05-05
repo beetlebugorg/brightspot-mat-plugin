@@ -10,8 +10,12 @@ import org.eclipse.mat.snapshot.model.IObject;
 @Subject("java.util.UUID")
 public class UUIDNameResolver implements IClassSpecificNameResolver {
 
-    @Override
-    public String resolve(IObject object) throws SnapshotException {
+	@Override
+	public String resolve(IObject object) throws SnapshotException {
+		if (object == null || object.resolveValue("mostSigBits") == null) {
+			return null;
+	    }
+		
         Long most = (Long) object.resolveValue("mostSigBits");
         Long least = (Long) object.resolveValue("leastSigBits");
 
